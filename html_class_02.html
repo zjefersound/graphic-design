@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: black;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+            background: linear-gradient( to right,
+            #FF0000,
+            #FFFF00,
+            rgb(0, 255, 128),
+            rgb(0, 119, 255),
+            rgb(255, 0, 191),
+            #FF0000,
+            #FFFF00,
+            rgb(0, 255, 128),
+            rgb(0, 119, 255),
+            rgb(255, 0, 191),
+            #FF0000);
+            background-size: 200%;
+            background-position: 0% 100%;
+            animation-name: bg-lgbt;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        main h1 {
+            font-size: 82px;
+        }
+        main img {
+            width: 400px;
+            margin-top: 40px;
+        }
+
+        @keyframes bg-lgbt {
+            0% {
+                background-position: 0% 100%;
+            }
+            50% {
+                background-position: 50% 50%;
+            }
+            100% {
+                background-position: 100% 0%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Graphic design is my passion</h1>
+        <img 
+            src="https://www.xgrupos.com/img-400.400.30-b4d0b26e42460393c0c4178c944a68ec.jpg" 
+            alt="VAPOVAPOVAPO"
+        >
+    </main>
+</body>
+
+</html>
