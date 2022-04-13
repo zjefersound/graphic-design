@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <style>
+        :root {
+            --brown: rgb(66, 43, 43);
+            --brown-light: rgb(92, 58, 58);
+            --cyan: rgb(140, 220, 225);
+            --tile: rgb(141, 54, 54);
+            --tile-dark: rgb(107, 42, 42);
+
+
+            --front-1-width: 340px;
+            --front-2-width: 400px;
+            --ceiling-size: calc(var(--front-1-width) / 2);
+            --tile-width: 40px;
+            --roof-tile-size: calc(var(--ceiling-size) + var(--tile-width));
+            --triangle-window-size: 115px;
+
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            height: 100vh;
+            width: 100%;
+            background: var(--cyan);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .house {
+            z-index: 2;
+        }
+
+        .grass {
+            height: 250px;
+            width: 1100px;
+            border-radius: 50%;
+            background: rgb(69, 100, 29);
+            margin-top: -100px;
+            display: flex;
+            justify-content: space-around
+        }
+
+        .tree {
+            height: 200px;
+            width: 80px;
+            background: var(--brown);
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+    
+        .tree:nth-child(1) {
+            transform: scale(0.8) translateY(-150px);
+        }
+        .tree:nth-child(2) {              
+            transform: scale(1.3) translateY(-150px);            
+        }
+        .tree:nth-child(3) {
+            transform: scale(1) translateY(-150px);
+        }
+        .tree:nth-child(4) {
+            transform: scale(0.7) translateY(-150px);
+        }
+
+        .tree::after {
+            content: "";            
+            display: block;
+            width: 0;
+            height: 0;
+            border-left: 90px solid transparent;
+            border-right: 90px solid transparent;
+            border-bottom: 500px solid rgb(69, 100, 29);
+            top: -500px;
+            position: absolute;
+            z-index: 1;
+            display: flex;
+        }
+
+        .ceilings {
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .roof-tile-1 {
+            width: 0;
+            height: 0;
+            border-left: var(--roof-tile-size) solid transparent;
+            border-right: var(--roof-tile-size) solid transparent;
+            border-bottom: var(--roof-tile-size) solid var(--tile);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin: 0 calc(-1 * var(--tile-width)) -40px;
+            z-index: 1;
+        }
+
+        .ceiling-1 {
+            --ceiling-size: calc(var(--front-1-width) / 2);
+            width: 0;
+            height: 0;
+            border-left: var(--ceiling-size) solid transparent;
+            border-right: var(--ceiling-size) solid transparent;
+            border-bottom: var(--ceiling-size) solid rgb(255, 249, 230);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            top: calc(var(--roof-tile-size) - var(--ceiling-size));
+        }
+
+        .ceiling-2 {
+            height: 170px;
+            width: calc(var(--front-2-width) + (var(--front-1-width)/2));
+            margin-left: calc(-1 * var(--front-1-width)/2);
+            position: relative;
+            background: var(--tile);
+            box-shadow: inset 0 -50px 0 var(--tile-dark);
+            border-bottom: 20px solid rgb(233, 229, 220);
+            margin-bottom: -20px;
+        }
+
+        .ceiling-shadow {
+            width: 0;
+            height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-top: 60px solid var(--tile-dark);
+            opacity: 0.7;
+            position: absolute;
+        }
+
+        .roof-corner {
+            width: 0;
+            height: 0;
+            border-bottom: 150px solid var(--tile-dark);
+            border-right: 30px solid transparent;
+            position: absolute;
+            right: -30px;
+        }
+
+        .roof-corner::before {
+            display: block;
+            content: "";
+
+            width: 0;
+            height: 0;
+            border-bottom: 100px solid var(--tile);
+            border-right: 20px solid transparent;
+            position: absolute;
+            right: -20px;
+        }
+
+        .window-triangle {
+            width: 0;
+            height: 0;
+            border-left: 115px solid transparent;
+            border-right: 115px solid transparent;
+            border-bottom: 115px solid var(--brown);
+            position: relative;
+            top: calc(var(--ceiling-size) - 115px);
+            z-index: 1;
+            display: flex;
+        }
+
+        .window-triangle::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            border-left: 80px solid transparent;
+            border-right: 80px solid transparent;
+            border-bottom: 80px solid var(--cyan);
+            position: absolute;
+            top: calc(100px - 80px);
+            margin-left: -80px;
+
+            z-index: 1;
+        }
+
+        .walls {
+            display: flex;
+        }
+
+        .wall {
+            background: rgb(255, 249, 230);
+            box-shadow: inset 0 -20px 0 rgb(255, 229, 218);
+        }
+
+        .front-1 {
+            height: 280px;
+            width: var(--front-1-width);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .front-2 {
+            height: 240px;
+            width: var(--front-2-width);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+
+        .door {
+            height: 200px;
+            width: 100px;
+            background: var(--brown);
+            display: flex;
+            flex-direction: column;
+            padding: 8px;
+        }
+
+        .door-block {
+            background: var(--brown-light);
+            flex: 1;
+            position: relative;
+        }
+
+        .door-block+.door-block {
+            margin-top: 8px;
+        }
+
+        .door-knob {
+            position: absolute;
+            height: 14px;
+            width: 14px;
+            border-radius: 50%;
+            background: var(--brown-light);
+            border: 4px solid var(--brown);
+            right: 0;
+            bottom: -11px;
+            z-index: 1;
+        }
+
+        .window {
+            height: 160px;
+            width: 160px;
+            background: var(--cyan);
+            border: 10px solid var(--brown);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .window-reflection::after,
+        .window-reflection {
+            height: 200px;
+            width: 4px;
+            background: white;
+            transform: rotate(-20deg);
+        }
+
+        .window-reflection::after {
+            content: "";
+            display: block;
+            transform: translate(-10px);
+
+        }
+
+        .window::before,
+        .window::after {
+            position: absolute;
+            display: block;
+            content: "";
+            background: var(--brown);
+            z-index: 1;
+        }
+
+        .window::before {
+            height: 10px;
+            width: 100%;
+
+        }
+
+        .window::after {
+            height: 100%;
+            width: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="house">
+            <div class="ceilings">
+                <div class="roof-tile-1">
+                    <div class="ceiling-1">
+                        <div class="window-triangle"></div>
+                    </div>
+                </div>
+                <div class="ceiling-2">
+                    <div class="ceiling-shadow"></div>
+                    <div class="roof-corner"></div>
+                </div>
+            </div>
+            <div class="walls">
+                <div class="front-1 wall">
+                    <div class="door">
+                        <div class="door-block"></div>
+                        <div class="door-block">
+                            <div class="door-knob"></div>
+                        </div>
+                        <div class="door-block"></div>
+                        <div class="door-block"></div>
+                    </div>
+                </div>
+
+                <div class="front-2 wall">
+                    <div class="window">
+                        <div class="window-reflection"></div>
+                    </div>
+                    <div class="window">
+                        <div class="window-reflection"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grass">
+            <div class="tree"></div>
+            <div class="tree"></div>
+            <div class="tree"></div>
+            <div class="tree"></div>
+        </div>
+    </main>
+</body>
+
+</html>
