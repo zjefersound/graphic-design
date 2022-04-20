@@ -29,14 +29,23 @@
         }
 
         .field {
+            --field-w: 1200px;
+            --stripe-w: calc((var(--field-w) - var(--border-w) * 2) / 6);
             background: rgb(1, 151, 69);
+            background: repeating-linear-gradient(
+                        to right,
+                        rgb(1, 151, 69),
+                        rgb(1, 151, 69) calc(var(--stripe-w)  / 2),
+                        rgb(7, 177, 83) calc(var(--stripe-w)  / 2),
+                        rgb(7, 177, 83) var(--stripe-w)
+                        );
             border: var(--border);
             height: 800px;
-            width: 1200px;
+            width: var(--field-w);
 
             transform-style: preserve-3d;
             transform: perspective(40cm) rotateX(65deg) rotateY(0deg) rotateZ(180deg);
-            animation: rotate-field 5s infinite;
+            animation: rotate-field 10s infinite;
             animation-timing-function: linear;
             display: flex;
             position: relative;
@@ -223,11 +232,7 @@
             }
 
             100% {
-                transform: perspective(40cm) rotateX(65deg) rotateY(0deg) rotateZ(180deg);
-            }
-
-            0% {
-                transform: perspective(40cm) rotateX(65deg) rotateY(0deg) rotateZ(0deg);
+                transform: perspective(40cm) rotateX(65deg) rotateY(0deg) rotateZ(360deg);
             }
         }
 
@@ -235,9 +240,11 @@
             0% {
                 transform: translateZ(8px) scaleZ(0.85);
             }
+
             50% {
                 transform: translateZ(40px);
             }
+
             100% {
                 transform: translateZ(8px) scaleZ(0.85);
             }
