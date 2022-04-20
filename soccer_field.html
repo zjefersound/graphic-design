@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="img/soccer_ball.png" type="image/x-icon">
+    <title>Soccer Field</title>
+    <style>
+        :root {
+            --border-w: 10px;
+            --border: var(--border-w) solid white;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: rgb(36, 36, 36);
+
+        }
+
+        .field {
+            background: rgb(1, 151, 69);
+            border: var(--border);
+            height: 800px;
+            width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            transform-style: preserve-3d;
+            transform: perspective(40cm) rotateX(65deg) rotateY(0deg) rotateZ(180deg);
+            animation: rotate-field 5s infinite;
+            animation-timing-function: linear;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .center-line {
+            height: 100%;
+            width: var(--border-w);
+            background: white;
+        }
+
+        .center-circle {
+            position: absolute;
+        }
+
+        .circle {
+            height: 240px;
+            width: 240px;
+            border: var(--border);
+            border-radius: 50%;
+        }
+
+        .areas {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .penalty-area {
+            border: var(--border);
+            border-left: 0;
+            height: 520px;
+            width: 180px;
+            display: flex;
+        }
+
+        .penalty-semi-circle {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .penalty-semi-circle .circle {
+            margin-left: -75%;
+        }
+
+        .goal-area {
+            border: var(--border);
+            border-left: 0;
+            height: 220px;
+            width: 72px;
+            margin: auto 0;
+        }
+
+        .penalty-circle {
+            height: 16px;
+            width: 16px;
+            background: white;
+            border-radius: 50%;
+            margin: auto
+        }
+
+        .right {
+            transform: rotate(180deg);
+        }
+
+        @keyframes rotate-field {
+            0% {
+                transform: perspective(40cm) rotateX(65deg) rotateY(0deg) rotateZ(0deg);
+            }
+            0% {
+                transform: perspective(40cm) rotateX(65deg) rotateY(0deg) rotateZ(180deg);
+            }
+            0% {
+                transform: perspective(40cm) rotateX(65deg) rotateY(0deg) rotateZ(0deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="field">
+            <div class="left">
+                <div class="areas">
+                    <div class="penalty-area">
+                        <div class="goal-area"></div>
+                        <div class="penalty-circle"></div>
+                    </div>
+                    <div class="penalty-semi-circle">
+                        <div class="circle"> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="center">
+                <div class="center-line"></div>
+                <div class="center-circle circle"></div>
+            </div>
+            <div class="right">
+                <div class="areas">
+                    <div class="penalty-area">
+                        <div class="goal-area"></div>
+                        <div class="penalty-circle"></div>
+                    </div>
+                    <div class="penalty-semi-circle">
+                        <div class="circle"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
