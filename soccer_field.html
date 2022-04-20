@@ -157,9 +157,9 @@
             justify-content: center;
             align-items: center;
             position: absolute;
-            animation: 0.6s 1s jumping-ball infinite ease-in-out;
+            animation: 3s 1s kicking-ball infinite;
+            animation-timing-function: linear;
         }
-
         .ball {
             position: absolute;
             width: 20px;
@@ -242,6 +242,55 @@
             }
         }
 
+        @keyframes kicking-ball {
+            /* 0 to 600 
+                600 - 90 - 80 - 70 - 60
+             */
+            0% {
+                transform: translateZ(10px) translateX(0) scaleZ(1);
+            }
+            
+            20% {
+                transform: translateZ(80px) translateX(300px);
+            }
+            
+            40% {
+                transform: translateZ(8px) translateX(600px) scaleZ(0.85);
+            }
+
+            50% {
+                transform: translateZ(50px) translateX(calc(600px - 170px));
+            }
+
+            55% {
+                transform: translateZ(8px) translateX(calc(600px - 240px)) scaleZ(0.85);
+            }
+            
+            60% {
+                transform: translateZ(35px) translateX(calc(600px - 300px));
+            }
+
+            65% {
+                transform: translateZ(8px) translateX(calc(600px - 350px)) scaleZ(0.90);
+            }
+            
+            70% {
+                transform: translateZ(30px) translateX(calc(600px - 390px));
+            }
+
+            75% {
+                transform: translateZ(8px) translateX(calc(600px - 420px)) scaleZ(0.95);
+            }
+
+            85% {
+                transform: translateZ(10px) translateX(calc(600px - 500px)) scaleZ(1);
+            }
+
+            95% {
+                transform: translateZ(10px) scaleZ(1);
+            }
+
+        }
         @keyframes jumping-ball {
             0% {
                 transform: translateZ(8px) scaleZ(0.85);
