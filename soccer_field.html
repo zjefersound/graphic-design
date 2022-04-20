@@ -32,13 +32,11 @@
             --field-w: 1200px;
             --stripe-w: calc((var(--field-w) - var(--border-w) * 2) / 6);
             background: rgb(1, 151, 69);
-            background: repeating-linear-gradient(
-                        to right,
-                        rgb(1, 151, 69),
-                        rgb(1, 151, 69) calc(var(--stripe-w)  / 2),
-                        rgb(7, 177, 83) calc(var(--stripe-w)  / 2),
-                        rgb(7, 177, 83) var(--stripe-w)
-                        );
+            background: repeating-linear-gradient(to right,
+                    rgb(1, 151, 69),
+                    rgb(1, 151, 69) calc(var(--stripe-w) / 2),
+                    rgb(7, 177, 83) calc(var(--stripe-w) / 2),
+                    rgb(7, 177, 83) var(--stripe-w));
             border: var(--border);
             height: 800px;
             width: var(--field-w);
@@ -49,6 +47,14 @@
             animation-timing-function: linear;
             display: flex;
             position: relative;
+            transition: 0.3s;
+        }
+
+        .field:hover {
+            box-shadow: 0 0 40px rgb(196, 196, 196);
+
+            animation-play-state: paused;
+
         }
 
         .field .floor {
