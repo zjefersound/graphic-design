@@ -30,6 +30,7 @@
         }
 
         .field {
+            position: relative;
             background: rgb(1, 151, 69);
             border: var(--border);
             height: 800px;
@@ -110,11 +111,37 @@
             transform: rotate(180deg);
         }
 
+        .goal {
+            border: var(--border);
+            border-right: 0;
+            height: 220px;
+            width: 72px;
+            transform: rotateY(93deg) translateZ(40px);
+            position: absolute;
+        }
+        .goal-1 {
+            left: 0;
+        }
+        .goal-2 {
+            right: 0;
+        }
+
+        .ball {
+            position: absolute;
+            height: 40px;
+            width: 40px;
+            display: inline-block;
+            margin: auto;
+            border-radius: 50%;
+            transform: rotateX(90deg) translateY(20px);
+            background: radial-gradient(circle at 50% 120%, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
+        }
+
         @keyframes rotate-field {
             0% {
                 transform: perspective(40cm) rotateX(65deg) rotateY(0deg) rotateZ(0deg);
             }
-            0% {
+            100% {
                 transform: perspective(40cm) rotateX(65deg) rotateY(0deg) rotateZ(180deg);
             }
             0% {
@@ -127,6 +154,8 @@
 <body>
     <main>
         <div class="field">
+            <div class="goal goal-1"></div>
+            <div class="goal goal-2"></div>
             <div class="left">
                 <div class="areas">
                     <div class="penalty-area">
