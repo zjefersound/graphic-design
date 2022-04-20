@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="img/soccer_ball.png" type="image/x-icon">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="img/soccer_ball.png" type="image/x-icon" />
     <title>Soccer Field</title>
     <style>
         :root {
@@ -26,21 +26,32 @@
             justify-content: center;
             overflow: hidden;
             background: rgb(36, 36, 36);
-
         }
 
         .field {
-            position: relative;
             background: rgb(1, 151, 69);
             border: var(--border);
             height: 800px;
             width: 1200px;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+
             transform-style: preserve-3d;
             transform: perspective(40cm) rotateX(65deg) rotateY(0deg) rotateZ(180deg);
             animation: rotate-field 5s infinite;
             animation-timing-function: linear;
+            display: flex;
+            position: relative;
+        }
+
+        .field .floor {
+            position: relative;
+            display: grid;
+            height: 100%;
+            width: 100%;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .field div {
+            transform-style: preserve-3d;
         }
 
         .center {
@@ -97,6 +108,7 @@
             height: 220px;
             width: 72px;
             margin: auto 0;
+            display: flex;
         }
 
         .penalty-circle {
@@ -104,7 +116,7 @@
             width: 16px;
             background: white;
             border-radius: 50%;
-            margin: auto
+            margin: auto;
         }
 
         .right {
@@ -112,41 +124,114 @@
         }
 
         .goal {
+            flex-shrink: 0;
             border: var(--border);
             border-right: 0;
             height: 220px;
             width: 72px;
-            transform: rotateY(93deg) translateZ(40px);
+            margin-top: calc(-1 * var(--border-w));
+            transform: rotateY(90deg) translateX(-36px) translateZ(-40px);
+        }
+
+        .ball-wrapper {
+            transform-style: preserve-3d;
+            transform: translateZ(10px);
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
             position: absolute;
-        }
-        .goal-1 {
-            left: 0;
-        }
-        .goal-2 {
-            right: 0;
         }
 
         .ball {
             position: absolute;
-            height: 40px;
-            width: 40px;
-            display: inline-block;
-            margin: auto;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            transform: rotateX(90deg) translateY(20px);
-            background: radial-gradient(circle at 50% 120%, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
+            background: rgb(239, 239, 239);
+            transform: translateZ(10px);
+        }
+
+        /* X Axis */
+        .ball:nth-child(1) {
+            transform: rotate3d(1, 0, 0, 0deg) translateZ(0px);
+        }
+
+        .ball:nth-child(2) {
+            transform: rotate3d(1, 0, 0, 36deg) translateZ(0px);
+        }
+
+        .ball:nth-child(3) {
+            transform: rotate3d(1, 0, 0, 72deg) translateZ(0px);
+        }
+
+        .ball:nth-child(4) {
+            transform: rotate3d(1, 0, 0, 108deg) translateZ(0px);
+        }
+
+        .ball:nth-child(5) {
+            transform: rotate3d(1, 0, 0, 144deg) translateZ(0px);
+        }
+
+        /* Y Axis */
+        .ball:nth-child(6) {
+            transform: rotate3d(0, 1, 0, 0deg);
+        }
+
+        .ball:nth-child(7) {
+            transform: rotate3d(0, 1, 0, 36deg);
+        }
+
+        .ball:nth-child(8) {
+            transform: rotate3d(0, 1, 0, 72deg);
+        }
+
+        .ball:nth-child(9) {
+            transform: rotate3d(0, 1, 0, 108deg);
+        }
+
+        .ball:nth-child(10) {
+            transform: rotate3d(0, 1, 0, 144deg);
+        }
+
+        /* Z Axis */
+        .ball:nth-child(11) {
+            transform: rotate3d(1, 0, 0, 0deg);
+        }
+
+        .ball:nth-child(12) {
+            transform: rotate3d(1, 0, 0, 36deg);
+        }
+
+        .ball:nth-child(13) {
+            transform: rotate3d(1, 0, 0, 72deg);
+        }
+
+        .ball:nth-child(14) {
+            transform: rotate3d(1, 0, 0, 108deg);
+        }
+
+        .ball:nth-child(15) {
+            transform: rotate3d(1, 0, 0, 144deg);
         }
 
         @keyframes rotate-field {
             0% {
                 transform: perspective(40cm) rotateX(65deg) rotateY(0deg) rotateZ(0deg);
             }
+
             100% {
                 transform: perspective(40cm) rotateX(65deg) rotateY(0deg) rotateZ(180deg);
             }
+
             0% {
                 transform: perspective(40cm) rotateX(65deg) rotateY(0deg) rotateZ(0deg);
             }
+        }
+
+        @keyframes jumping-ball {
+            
         }
     </style>
 </head>
@@ -154,31 +239,54 @@
 <body>
     <main>
         <div class="field">
-            <div class="goal goal-1"></div>
-            <div class="goal goal-2"></div>
-            <div class="left">
-                <div class="areas">
-                    <div class="penalty-area">
-                        <div class="goal-area"></div>
-                        <div class="penalty-circle"></div>
-                    </div>
-                    <div class="penalty-semi-circle">
-                        <div class="circle"> </div>
+            <div class="ball-wrapper">
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+            </div>
+            <div class="floor">
+                <div class="left">
+                    <div class="areas">
+                        <div class="penalty-area">
+                            <div class="goal-area">
+                                <div class="goal"></div>
+                            </div>
+                            <div class="penalty-circle"></div>
+                        </div>
+                        <div class="penalty-semi-circle">
+                            <div class="circle"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="center">
-                <div class="center-line"></div>
-                <div class="center-circle circle"></div>
-            </div>
-            <div class="right">
-                <div class="areas">
-                    <div class="penalty-area">
-                        <div class="goal-area"></div>
-                        <div class="penalty-circle"></div>
-                    </div>
-                    <div class="penalty-semi-circle">
-                        <div class="circle"> </div>
+                <div class="center">
+                    <div class="center-line"></div>
+                    <div class="center-circle circle"></div>
+                </div>
+                <div class="right">
+                    <div class="areas">
+                        <div class="penalty-area">
+                            <div class="goal-area">
+                                <div class="goal"></div>
+                            </div>
+                            <div class="penalty-circle"></div>
+                        </div>
+                        <div class="penalty-semi-circle">
+                            <div class="circle"></div>
+                        </div>
                     </div>
                 </div>
             </div>
